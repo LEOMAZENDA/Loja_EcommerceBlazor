@@ -18,11 +18,11 @@ public class UsuarioServico : IUsuarioServico
         _mapper = mapper;
     }
 
-    public async Task<SessaoIniciadaDTO> Autorizacao(LoginDTO modeloDto)
+    public async Task<SessaoIniciadaDTO> Autorizacao(LoginDTO dto)
     {
         try
         {
-            var consulta = _repositorio.Consultar(p => p.Correo == modeloDto.Correo && p.Clave == modeloDto.Clave);
+            var consulta = _repositorio.Consultar(p => p.Correo == dto.Correo && p.Clave == dto.Clave);
             var fromDbModelo = await consulta.FirstOrDefaultAsync();
 
             if (fromDbModelo == null)
@@ -37,11 +37,11 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public async Task<UsuarioDTO> Criar(UsuarioDTO modeloDto)
+    public async Task<UsuarioDTO> Criar(UsuarioDTO dto)
     {   
         try
         {
-            var dbModelo = _mapper.Map<Usuario>(modeloDto);
+            var dbModelo = _mapper.Map<Usuario>(dto);
             var rspModelo = await _repositorio.Criar(dbModelo);
 
             if (rspModelo.IdUsuario != 0)
@@ -56,18 +56,18 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public async Task<bool> Editar(UsuarioDTO modeloDto)
+    public async Task<bool> Editar(UsuarioDTO dto)
     {
         try
         {
-            var consulta = _repositorio.Consultar(p => p.IdUsuario == modeloDto.IdUsuario);
+            var consulta = _repositorio.Consultar(p => p.IdUsuario == dto.IdUsuario);
             var fromDbModelo = await consulta.FirstOrDefaultAsync();
 
             if(fromDbModelo != null)
             {
-                fromDbModelo.NombreCompleto = modeloDto.NombreCompleto;
-                fromDbModelo.Correo = modeloDto.Correo;
-                fromDbModelo.Clave = modeloDto.Clave;
+                fromDbModelo.NombreCompleto = dto.NombreCompleto;
+                fromDbModelo.Correo = dto.Correo;
+                fromDbModelo.Clave = dto.Clave;
                 var resultado = await _repositorio.Editar(fromDbModelo);
 
                 if (!resultado)
