@@ -18,17 +18,17 @@ public class UsuarioServico : IUsuarioServico
         _mapper = mapper;
     }
 
-    public async Task<SessaoIniciadaDTO> Autorizacao(LoginDTO modelo)
+    public async Task<SessaoIniciadaDTO> Autorizacao(LoginDTO modeloDto)
     {
         try
         {
-            var consulta = _repositorio.Consultar(p => p.Correo == modelo.Correo && p.Clave == modelo.Clave);
+            var consulta = _repositorio.Consultar(p => p.Correo == modeloDto.Correo && p.Clave == modeloDto.Clave);
             var fromDbModelo = await consulta.FirstOrDefaultAsync();
 
             if (fromDbModelo == null)
                 return _mapper.Map<SessaoIniciadaDTO>(fromDbModelo);
             else
-                throw new TaskCanceledException("Usuario não encontrado");
+                throw new TaskCanceledException("Senha ou email iválida");
         }
         catch (Exception ex)
         {
@@ -37,11 +37,11 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public async Task<UsuarioDTO> Criar(UsuarioDTO modelo)
+    public async Task<UsuarioDTO> Criar(UsuarioDTO modeloDto)
     {   
         try
         {
-            var dbModelo = _mapper.Map<Usuario>(modelo);
+            var dbModelo = _mapper.Map<Usuario>(modeloDto);
             var rspModelo = await _repositorio.Criar(dbModelo);
 
             if (rspModelo.IdUsuario != 0)
@@ -56,18 +56,18 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public async Task<bool> Editar(UsuarioDTO modelo)
+    public async Task<bool> Editar(UsuarioDTO modeloDto)
     {
         try
         {
-            var consulta = _repositorio.Consultar(p => p.IdUsuario == modelo.IdUsuario);
+            var consulta = _repositorio.Consultar(p => p.IdUsuario == modeloDto.IdUsuario);
             var fromDbModelo = await consulta.FirstOrDefaultAsync();
 
             if(fromDbModelo != null)
             {
-                fromDbModelo.NombreCompleto = modelo.NombreCompleto;
-                fromDbModelo.Correo = modelo.Correo;
-                fromDbModelo.Clave = modelo.Clave;
+                fromDbModelo.NombreCompleto = modeloDto.NombreCompleto;
+                fromDbModelo.Correo = modeloDto.Correo;
+                fromDbModelo.Clave = modeloDto.Clave;
                 var resultado = await _repositorio.Editar(fromDbModelo);
 
                 if (!resultado)
@@ -76,7 +76,7 @@ public class UsuarioServico : IUsuarioServico
 ;           }
             else
             {
-                throw new TaskCanceledException("Usuario não encontrado");
+                throw new TaskCanceledException("Registo não encontrado");
             }
         }
         catch (Exception ex)
@@ -100,7 +100,7 @@ public class UsuarioServico : IUsuarioServico
                     throw new TaskCanceledException("Não foi possível eliminar o registo");
                 return resultado;;
             }else
-                throw new TaskCanceledException("Usuario não encontrado");
+                throw new TaskCanceledException("Registo não encontrado");
         }
         catch (Exception ex)
         {
@@ -109,11 +109,16 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public Task<List<UsuarioDTO>> Listar(string rol, string buscar)
+    public async Task<List<UsuarioDTO>> Listar(string rol, string buscar)
     {
         try
         {
+            var consulta = _repositorio.Consultar(p => 
+            p.Rol == rol && string.Concat(p.NombreCompleto.ToLower(), p.Correo.ToLower()).Contains(buscar.ToLower())
+            );
 
+            List<UsuarioDTO> lista = _mapper.Map<List<UsuarioDTO>>(await consulta.ToListAsync());
+            return lista;
         }
         catch (Exception ex)
         {
@@ -122,11 +127,17 @@ public class UsuarioServico : IUsuarioServico
         }
     }
 
-    public Task<UsuarioDTO> Obter(int id)
+    public async Task<UsuarioDTO> Obter(int id)
     {
         try
         {
+            var consulta = _repositorio.Consultar(p => p.IdUsuario == id);
+            var fromDbModelo = await consulta.FirstOrDefaultAsync();
 
+            if (fromDbModelo != null)
+                return _mapper.Map<UsuarioDTO>(fromDbModelo);         
+            else
+                throw new TaskCanceledException("Registo não encontrado");
         }
         catch (Exception ex)
         {

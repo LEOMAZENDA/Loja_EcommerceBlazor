@@ -13,7 +13,9 @@ public class AutoMapperProfile : Profile
         CreateMap<Usuario, SessaoIniciadaDTO>().ReverseMap();
 
         CreateMap<Categoria, CategoriaDTO>().ReverseMap();
-        CreateMap<Producto, ProductoDTO>().ReverseMap().ForMember(destino =>
+
+        CreateMap<Producto, ProductoDTO>();
+        CreateMap<ProductoDTO, Producto>().ForMember(destino =>
             destino.IdCategoriaNavigation,
             opt => opt.Ignore()
         );

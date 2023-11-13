@@ -6,8 +6,8 @@ public interface IUsuarioServico
 {
     Task<List<UsuarioDTO>> Listar(string rol, string buscar);   
     Task<UsuarioDTO> Obter(int id);   
-    Task<SessaoIniciadaDTO> Autorizacao(LoginDTO modelo);   
-    Task<UsuarioDTO> Criar(UsuarioDTO modelo);   
-    Task<bool> Editar(UsuarioDTO modelo);   
+    Task<SessaoIniciadaDTO> Autorizacao(LoginDTO modeloDto);   
+    Task<UsuarioDTO> Criar(UsuarioDTO modeloDto);   
+    Task<bool> Editar(UsuarioDTO modeloDto);   
     Task<bool> Eliminar(int id);   
 }
