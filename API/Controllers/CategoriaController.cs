@@ -6,25 +6,25 @@ namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UsuarioController : ControllerBase
+public class CategoriaController : ControllerBase
 {
-    private readonly IUsuarioServico _servico;
+    private readonly ICategoriaServico _servico;
 
-    public UsuarioController(IUsuarioServico servico)
+    public CategoriaController(ICategoriaServico servico)
     {
         _servico = servico;
     }
 
-    [HttpGet("Listar/{rol:alpha}/{buscar:alpha?}")]
-    public async Task<IActionResult> Listar(string rol, string buscar = "NA")
+    [HttpGet("Listar/{buscar:alpha?}")]
+    public async Task<IActionResult> Listar(string buscar = "NA")
     {
-        var response = new ResponseDTO<List<UsuarioDTO>>();
+        var response = new ResponseDTO<List<CategoriaDTO>>();
         try
         {
             if (buscar == "NA") buscar = "";
 
             response.EstaCorreto = true;
-            response.Resultado = await _servico.Listar(rol, buscar);
+            response.Resultado = await _servico.Listar(buscar);
         }
         catch (Exception ex)
         {
@@ -37,7 +37,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("Obter/{Id:int}")]
     public async Task<IActionResult> Obter(int Id)
     {
-        var response = new ResponseDTO<UsuarioDTO>();
+        var response = new ResponseDTO<CategoriaDTO>();
         try
         {
             response.EstaCorreto = true;
@@ -51,10 +51,11 @@ public class UsuarioController : ControllerBase
         return Ok(response);
     }
 
+
     [HttpPost("Criar")]
-    public async Task<IActionResult> Criar([FromBody] UsuarioDTO dto)
+    public async Task<IActionResult> Criar([FromBody] CategoriaDTO dto)
     {
-        var response = new ResponseDTO<UsuarioDTO>();
+        var response = new ResponseDTO<CategoriaDTO>();
         try
         {
             response.EstaCorreto = true;
@@ -68,27 +69,12 @@ public class UsuarioController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPost("Autorizacao")]
-    public async Task<IActionResult> Autorizacao([FromBody] LoginDTO dto)
-    {
-        var response = new ResponseDTO<SessaoIniciadaDTO>();
-        try
-        {
-            response.EstaCorreto = true;
-            response.Resultado = await _servico.Autorizacao(dto);
-        }
-        catch (Exception ex)
-        {
-            response.EstaCorreto = true;
-            response.Mensagem = ex.Message;
-        }
-        return Ok(response);
-    }
 
     [HttpPut("Editar")]
-    public async Task<IActionResult> Editar([FromBody] UsuarioDTO dto)
+    public async Task<IActionResult> Editar([FromBody] CategoriaDTO dto)
     {
         var response = new ResponseDTO<bool>();
+
         try
         {
             response.EstaCorreto = true;

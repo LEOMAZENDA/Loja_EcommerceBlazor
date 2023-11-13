@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DbecommerceContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoSQl"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQL_Conexao"));
 });
 
 //Repositorios
