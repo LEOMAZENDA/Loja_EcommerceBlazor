@@ -36,5 +36,14 @@ Inicie primeiro o Projeto API e, em seguida, inicie o projeto Blazor WebAssembly
 Contribuições
 Toda e qualquer contribuição ou interesse é bem-vindo! Podeno me contactar pelos contactos a baixo:
 Email: Eng.leomazenda@gmail.com
-Linkedin: Leonildo Vivaldo MAzenda - Link => https://www.linkedin.com/in/leonildo-vivaldo-mazenda-202121210/
-FaceBook: Leonildo Vivaldo - Link => https://web.facebook.com/leonildo.vivaldo
+Linkedin: 
+Leonildo Vivaldo MAzenda 
+Link => https://www.linkedin.com/in/leonildo-vivaldo-mazenda-202121210/
+
+FaceBook: 
+Leonildo Vivaldo 
+Link => https://web.facebook.com/leonildo.vivaldo
+
+Telefones:
++244 923 684 849
++244 956 099 039
