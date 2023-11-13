@@ -102,7 +102,7 @@ public class UsuarioController : ControllerBase
         return Ok(response);
     }
 
-    [HttpDelete("Eliminar")]
+    [HttpDelete("Eliminar/{Id:int}")]
     public async Task<IActionResult> Eliminar(int Id)
     {
         var response = new ResponseDTO<bool>();
