@@ -13,7 +13,6 @@ namespace LojaWebAssembly.Servicos.Implementacao
             _httpClient = httpClient;
         }
 
-
         public async Task<ResponseDTO<CategoriaDTO>> Criar(CategoriaDTO dto)
         {
             var response = await _httpClient.PostAsJsonAsync("Categoria/Criar", dto);
