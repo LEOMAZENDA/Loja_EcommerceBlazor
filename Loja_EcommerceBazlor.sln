@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servico", "Servico\Servico.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilidades", "Utilidades\Utilidades.csproj", "{41F6586B-725E-4E1D-8CC5-BFAEE6F8249F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{74D8C931-2305-4902-B739-6877ED0D2DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{74D8C931-2305-4902-B739-6877ED0D2DA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaOnline", "LojaOnline\LojaOnline.csproj", "{8CC2E4C7-FCC2-4871-9AEF-A6A537399CF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{74D8C931-2305-4902-B739-6877ED0D2DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D8C931-2305-4902-B739-6877ED0D2DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D8C931-2305-4902-B739-6877ED0D2DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC2E4C7-FCC2-4871-9AEF-A6A537399CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC2E4C7-FCC2-4871-9AEF-A6A537399CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC2E4C7-FCC2-4871-9AEF-A6A537399CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC2E4C7-FCC2-4871-9AEF-A6A537399CF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

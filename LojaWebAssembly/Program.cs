@@ -12,12 +12,13 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5294/api") });//Url da API
-
 
 //Serviços adicionados
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5294/api") });//Url da API
+
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddBlazoredToast();
+
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IProductoServico, ProductoServico>();

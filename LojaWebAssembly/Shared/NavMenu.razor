@@ -1,31 +1,40 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">LojaWebAssembly</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+﻿
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" runat="server" href="#">Ecommerce Demo</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </div>
-</div>
+        <div class="@NavMenuCssClass navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
+                <li class="nav-item" b-test><NavLink class="nav-link" href="dashboard"> Dashboard</NavLink></li>
+                <li class="nav-item"><NavLink class="nav-link" href="usuarios"> Usuarios</NavLink></li>
+                <li class="nav-item"><NavLink class="nav-link" href="categorias"> Categorias</NavLink></li>
+                <li class="nav-item"><NavLink class="nav-link" href="productos"> Productos</NavLink></li>
+
+                <li class="nav-item"><NavLink class="nav-link" href="catalogo"> Tienda</NavLink></li>
+            </ul>
+
+
+            <span class="navbar-text me-3">
+                admins@example.com
+            </span>
+
+            <a class="btn btn-outline-dark ms-auto ms-md-0 me-3" href="/cart">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </a>
+
+            <button class="btn btn-outline-dark ms-auto ms-md-0 me-3" type="button">Salir</button>
+
+            <a class="btn btn-outline-dark ms-auto ms-md-0 me-3" href="/login">Iniciar sesion</a>
+
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    </div>
+</nav>
 
 @code {
     private bool collapseNavMenu = true;
